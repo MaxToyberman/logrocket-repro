@@ -9,7 +9,8 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.logrocket-repro"
     },
     "android": {
       "adaptiveIcon": {
@@ -23,6 +24,7 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
+      "@logrocket/react-native",
       "expo-router",
       [
         "expo-splash-screen",

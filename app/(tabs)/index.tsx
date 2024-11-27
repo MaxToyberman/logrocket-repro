@@ -1,11 +1,36 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { Image, StyleSheet, Platform, TouchableOpacity, View, Text } from 'react-native';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import LogRocket from '@logrocket/react-native';
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
+
+const LOG_ROCKET_KEY = '';
 
 export default function HomeScreen() {
+
+  useEffect(() => {
+    LogRocket.init(LOG_ROCKET_KEY, {
+      shouldCaptureIP: false,
+      network: {
+        isEnabled: false,
+      },
+      textSanitizer: 'none',
+      /* ignore views with testID={LOG_ROCKET_PRIVATE} from being recorded
+      used for UI elemnts that contains sensitive data */
+      redactionTags: ['private'],
+      console: {
+        isEnabled: false,
+      },
+    });
+
+
+  }, []);
+
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
@@ -49,7 +74,16 @@ export default function HomeScreen() {
           <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
           <ThemedText type="defaultSemiBold">app-example</ThemedText>.
         </ThemedText>
+          {/* <View style={{height: 300, width: 300}}>
+
+          </View> */}
       </ThemedView>
+
+      <TouchableOpacity style={{backgroundColor: 'red', height: 80}} onPress={() => { 
+        alert('test button')
+      }}>
+        <Text>TEST BUTTON</Text>
+      </TouchableOpacity>
     </ParallaxScrollView>
   );
 }
